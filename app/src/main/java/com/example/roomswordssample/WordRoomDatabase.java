@@ -56,9 +56,11 @@ public abstract class WordRoomDatabase extends RoomDatabase {
             // when it is first created
             mDao.deleteAll();
 
-            for (int i = 0; i <= words.length - 1; i++) {
-                Word word = new Word(words[i]);
-                mDao.insert(word);
+            if (mDao.getAnyWord().length < 1) {
+                for (int i = 0; i <= words.length - 1; i++) {
+                    Word word = new Word(words[i]);
+                    mDao.insert(word);
+                }
             }
             return null;
         }
